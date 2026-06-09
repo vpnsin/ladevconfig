@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "description": "Shared ESLint, Prettier, commitlint, markdownlint, lint-staged, Husky and GitHub CI/release config for Node.js & Next.js repos.",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vpnsin/ladevconfig.git"
+  },
+  "homepage": "https://github.com/vpnsin/ladevconfig#readme",
+  "bugs": {
+    "url": "https://github.com/vpnsin/ladevconfig/issues"
+  },
   "bin": {
     "ladevconfig": "bin/cli.js"
   },
