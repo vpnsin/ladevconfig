@@ -1,0 +1,39 @@
+name: Lighthouse
+
+# Lighthouse CI on pull requests — performance, accessibility, best-practices
+# and SEO. Builds the app, serves it, audits the URLs in lighthouserc.json, and
+# posts a public report link in the run logs.
+# Opt-in: NOT installed by `ladevconfig init` unless you pass --lighthouse.
+on:
+  pull_request:
+    branches: [main, dev]
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true

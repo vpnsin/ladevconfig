@@ -37,6 +37,7 @@ npx ladevconfig init --node        # force the base (Node) preset
 npx ladevconfig init --jest        # scaffold Jest (ts-jest)
 npx ladevconfig init --vitest      # scaffold Vitest (alternative to Jest)
 npx ladevconfig init --scorecard   # also add the OSSF Scorecard workflow (public repos)
+npx ladevconfig init --lighthouse  # also add a Lighthouse CI workflow (web apps)
 npx ladevconfig init --publish     # also add npm publish-on-release (needs NPM_TOKEN secret)
 npx ladevconfig init --sonar       # also add SonarCloud analysis (needs SONAR_TOKEN secret)
 npx ladevconfig init --no-install  # scaffold only, install deps yourself
@@ -98,18 +99,17 @@ export default defineConfig(base);
 
 ## What's inside
 
-| Area            | Source                                   | Notes                                           |
-| --------------- | ---------------------------------------- | ----------------------------------------------- |
-| ESLint (Node)   | `ladevconfig/eslint/base`                | flat config: JS + typescript-eslint + Prettier  |
-| ESLint (Next)   | `ladevconfig/eslint/next`                | base + `eslint-config-next` (optional peer dep) |
-| Prettier        | `ladevconfig/prettier`                   | 100 print width, single quotes, es5 commas      |
-| commitlint      | `ladevconfig/commitlint`                 | Conventional Commits                            |
-| lint-staged     | `ladevconfig/lint-staged`                | ESLint/Prettier/markdownlint on staged files    |
-| TypeScript      | `ladevconfig/tsconfig/{base,node,next}.json` | strict base + Node/Next variants            |
-| Jest            | `ladevconfig/jest`                       | ts-jest preset (opt-in via `--jest`)            |
-| Vitest          | `ladevconfig/vitest`                     | Vitest preset (opt-in via `--vitest`)           |
-| EditorConfig    | `templates/editorconfig`                 | LF, UTF-8, 2-space — complements Prettier       |
-| Node version    | `templates/nvmrc` → `.nvmrc`             | single source of truth; CI reads it via `node-version-file` |
+- **ESLint** — `ladevconfig/eslint/base` (Node) / `ladevconfig/eslint/next`
+  (base + `eslint-config-next`). Flat config: JS + typescript-eslint + Prettier.
+- **Prettier** — `ladevconfig/prettier` (100 width, single quotes, es5 commas).
+- **commitlint** — `ladevconfig/commitlint` (Conventional Commits).
+- **lint-staged** — `ladevconfig/lint-staged` (ESLint/Prettier/markdownlint on staged files).
+- **TypeScript** — `ladevconfig/tsconfig/{base,node,next}.json` (strict base + Node/Next variants).
+- **Jest / Vitest** — `ladevconfig/jest` (ts-jest) or `ladevconfig/vitest`; opt-in via `--jest` / `--vitest`.
+- **GitHub workflows** — CI, CodeQL, dependency review, Trivy, release-please; opt-in: Scorecard, Lighthouse, npm-publish, SonarCloud.
+- **Governance** — `SECURITY.md`, `CONTRIBUTING.md`, `CODEOWNERS`, PR & issue templates.
+- **EditorConfig** — `templates/editorconfig` (LF, UTF-8, 2-space).
+- **Node version** — `.nvmrc`; CI reads it via `node-version-file`.
 
 ## Not included (and why)
 

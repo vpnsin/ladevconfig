@@ -50,6 +50,7 @@ ${c.bold('Options:')}
   --scorecard    also add the OSSF Scorecard workflow (public repos)
   --publish      also add the npm publish-on-release workflow (needs NPM_TOKEN)
   --sonar        also add SonarCloud analysis (needs SONAR_TOKEN)
+  --lighthouse   also add a Lighthouse CI workflow (web apps)
   --force        overwrite existing config/template files
   --no-install   skip installing dev dependencies
   -h, --help     show this help
@@ -164,6 +165,10 @@ if (has('--publish')) {
 if (has('--sonar')) {
   copyTemplate('github/workflows/sonarqube.yml', '.github/workflows/sonarqube.yml');
   copyTemplate('sonar-project.properties', 'sonar-project.properties');
+}
+if (has('--lighthouse')) {
+  copyTemplate('github/workflows/lighthouse.yml', '.github/workflows/lighthouse.yml');
+  copyTemplate('lighthouserc.json', 'lighthouserc.json');
 }
 
 console.log(c.bold('\nGovernance & docs'));
