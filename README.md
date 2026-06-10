@@ -1,9 +1,9 @@
 # devkit
 
-[![npm version](https://img.shields.io/npm/v/devkit.svg)](https://www.npmjs.com/package/devkit)
-[![npm downloads](https://img.shields.io/npm/dm/devkit.svg)](https://www.npmjs.com/package/devkit)
-[![license: MIT](https://img.shields.io/npm/l/devkit.svg)](https://www.npmjs.com/package/devkit)
-[![node](https://img.shields.io/node/v/devkit.svg)](https://www.npmjs.com/package/devkit)
+[![npm version](https://img.shields.io/npm/v/@vpnsin/devkit.svg)](https://www.npmjs.com/package/@vpnsin/devkit)
+[![npm downloads](https://img.shields.io/npm/dm/@vpnsin/devkit.svg)](https://www.npmjs.com/package/@vpnsin/devkit)
+[![license: MIT](https://img.shields.io/npm/l/@vpnsin/devkit.svg)](https://www.npmjs.com/package/@vpnsin/devkit)
+[![node](https://img.shields.io/node/v/@vpnsin/devkit.svg)](https://www.npmjs.com/package/@vpnsin/devkit)
 
 Shared development tooling for Node.js & Next.js repos — one source of truth for
 **ESLint, Prettier, commitlint, markdownlint, lint-staged, Husky hooks, TypeScript,
@@ -31,7 +31,7 @@ Adopt it in any repo with a single command instead of copy-pasting config.
 
 ```bash
 # in the target repo (must contain a package.json)
-npm i -D devkit
+npm i -D @vpnsin/devkit
 npx devkit init
 ```
 
@@ -144,40 +144,40 @@ Each config is also importable directly:
 
 ```ts
 // eslint.config.ts  (needs the `jiti` devDependency to load TS config)
-export { default } from 'devkit/eslint/next'; // or 'devkit/eslint/base'
+export { default } from '@vpnsin/devkit/eslint/next'; // or '@vpnsin/devkit/eslint/base'
 
 // extend it:
-import base from 'devkit/eslint/base';
+import base from '@vpnsin/devkit/eslint/base';
 export default [...base, { rules: { 'no-console': 'off' } }];
 ```
 
 ```jsonc
 // package.json
-{ "prettier": "devkit/prettier" }
+{ "prettier": "@vpnsin/devkit/prettier" }
 ```
 
 ```ts
 // commitlint.config.ts
-export { default } from 'devkit/commitlint';
+export { default } from '@vpnsin/devkit/commitlint';
 
 // vitest.config.ts (alternative to Jest)
 import { defineConfig } from 'vitest/config';
-import base from 'devkit/vitest';
+import base from '@vpnsin/devkit/vitest';
 export default defineConfig(base);
 ```
 
 ```js
 // .lintstagedrc.mjs  (stays .mjs — .ts breaks the bare `npx lint-staged` hook)
-export { default } from 'devkit/lint-staged';
+export { default } from '@vpnsin/devkit/lint-staged';
 
 // jest.config.mjs (Node + ts-jest; stays .mjs — ts-node can't re-export the ESM preset)
-export { default } from 'devkit/jest';
+export { default } from '@vpnsin/devkit/jest';
 ```
 
 ```jsonc
 // tsconfig.json — extend a shared base (base / node / next)
 {
-  "extends": "devkit/tsconfig/node.json",
+  "extends": "@vpnsin/devkit/tsconfig/node.json",
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"],
 }
@@ -185,13 +185,13 @@ export { default } from 'devkit/jest';
 
 ## What's inside
 
-- **ESLint** — `devkit/eslint/base` (Node) / `devkit/eslint/next`
+- **ESLint** — `@vpnsin/devkit/eslint/base` (Node) / `@vpnsin/devkit/eslint/next`
   (base + `eslint-config-next`). Flat config: JS + typescript-eslint + Prettier.
-- **Prettier** — `devkit/prettier` (100 width, single quotes, es5 commas).
-- **commitlint** — `devkit/commitlint` (Conventional Commits).
-- **lint-staged** — `devkit/lint-staged` (ESLint/Prettier/markdownlint on staged files).
-- **TypeScript** — `devkit/tsconfig/{base,node,next}.json` (strict base + Node/Next variants).
-- **Jest / Vitest** — `devkit/jest` (ts-jest) or `devkit/vitest`; opt-in via `--jest` / `--vitest`.
+- **Prettier** — `@vpnsin/devkit/prettier` (100 width, single quotes, es5 commas).
+- **commitlint** — `@vpnsin/devkit/commitlint` (Conventional Commits).
+- **lint-staged** — `@vpnsin/devkit/lint-staged` (ESLint/Prettier/markdownlint on staged files).
+- **TypeScript** — `@vpnsin/devkit/tsconfig/{base,node,next}.json` (strict base + Node/Next variants).
+- **Jest / Vitest** — `@vpnsin/devkit/jest` (ts-jest) or `@vpnsin/devkit/vitest`; opt-in via `--jest` / `--vitest`.
 - **App starters** — `--backend` (Express + TS) / `--frontend` (Next.js App Router + TS).
 - **GitHub workflows** — CI, CodeQL, dependency review, Trivy, release-please; opt-in: Scorecard, Lighthouse, npm-publish, SonarCloud.
 - **Governance** — `SECURITY.md`, `CONTRIBUTING.md`, `CODEOWNERS`, PR & issue templates.
@@ -206,7 +206,7 @@ export { default } from 'devkit/jest';
 | Area                                         | Source template                                           | Purpose                                                        |
 | -------------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------------- |
 | ESLint / Prettier / commitlint / lint-staged | shims re-exporting the package                            | flat ESLint, Prettier, Conventional Commits, staged-file lint  |
-| TypeScript                                   | `tsconfig.json` extending `devkit/tsconfig/*`             | strict base + Node/Next variant                                |
+| TypeScript                                   | `tsconfig.json` extending `@vpnsin/devkit/tsconfig/*`     | strict base + Node/Next variant                                |
 | Backend app                                  | `templates/app/backend/*`                                 | Express + TS skeleton, Dockerfile (opt-in, `--backend`)        |
 | Frontend app                                 | `templates/app/frontend/*`                                | Next.js App Router + TS skeleton (opt-in, `--frontend`)        |
 | markdownlint                                 | `templates/markdownlint-cli2.jsonc`                       | tuned to coexist with Prettier                                 |
