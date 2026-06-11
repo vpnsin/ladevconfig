@@ -6,11 +6,11 @@
   "prettier": "./prettier/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vpnsin/devkit.git"
+    "url": "git+https://github.com/vpnsin-labs/devkit.git"
   },
-  "homepage": "https://github.com/vpnsin/devkit#readme",
+  "homepage": "https://github.com/vpnsin-labs/devkit#readme",
   "bugs": {
-    "url": "https://github.com/vpnsin/devkit/issues"
+    "url": "https://github.com/vpnsin-labs/devkit/issues"
   },
   "bin": {
     "devkit": "bin/cli.js"
